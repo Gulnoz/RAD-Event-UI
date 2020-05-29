@@ -1,10 +1,16 @@
 import React,{useState, useEffect} from 'react';
 import './App.css';
 import EventList from './Components/EventList'
-import CreatEvent from './Components/CreateEvent'
+import CreateUpdateEvent from './Components/CreateUpdateEvent'
 
 const App = props => {
   const [events, setEvents] = useState(null);
+  const [event, setEvent] = useState(null);
+  const [action, setAction] = useState(null);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   const fetchEvents=()=>{
     fetch('https://qfdybmvc7d.execute-api.us-east-2.amazonaws.com/dev/events')
@@ -13,20 +19,43 @@ const App = props => {
         setEvents(events)
       });
   }
-  useEffect(() => {
-    fetchEvents();
-  }, []);
-  const hendleCreateEvent=(event)=>{
+  const fetchDeleteEvent=(id)=>{
+    fetch(`https://qfdybmvc7d.execute-api.us-east-2.amazonaws.com/dev/events/${id}`,{
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+      .then(data => {
+        if(data.message){
+            deleteHandler(id)
+        }});
+  }
+  const deleteHandler = (id) => {
+    let newEvents = events.filter(event => event.event_id !== id);
+    setEvents(newEvents);
+  }
+ 
+  const handleCreateEvent=(event)=>{
     setEvents([...events, event]);
+  }
+  const handleUpdateEvent = (event) => {
+    console.log(event)
+    let id = event.event_id
+    let newEvents = events.filter(event => event.event_id !== id);
+    setEvents([...newEvents, event]);
+  }
+  const handleUpdateDelete=(event, action)=>{
+    setEvent(event);
+    setAction(action);
+    if(action === "DELETE"){
+      fetchDeleteEvent(event.event_id);
+    }
   }
   return (
     <>
       <h2>Welcome to the Ride-and-Drive Event Database!</h2>
-      <EventList events={events} fetchEvents={fetchEvents}/>
-      <CreatEvent hendleCreateEvent={hendleCreateEvent}/>
+      <EventList handleUpdateDelete={handleUpdateDelete} events={events} fetchEvents={fetchEvents}/>
+      <CreateUpdateEvent event={event} action={action} handleUpdateEvent={handleUpdateEvent} handleCreateEvent={handleCreateEvent}/>
     </>
-
   );
 }
-
 export default App;

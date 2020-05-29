@@ -20,19 +20,31 @@
     border-left: 1px solid black;
     border-bottom: 1px solid black;
 }
+
 .ui.table tr td:first-child{
     border-left: none;
 }
-
+.ui.table tr td:last-child{
+    width: 60px;
+    padding: 0px;
+}
+.ui.table tr button{
+    width: 60px;
+    margin:2px;
+    padding: 0px;
+    background-color: lightsteelblue;
+}
+.ui.table tr:hover{
+    cursor: pointer;
+}
+.ui.table tr:active{
+    background-color: grey;
+}
+.ui.table tr:focus-visible{
+    background-color: grey;
+}
 @media only screen and (max-width: 2000px) and (min-width: 500px){
 .ui.container{
-     width: 100%;
-     margin-left: 0px;
-     margin-right: 0px;
-}
-}
-@media only screen and (max-width: 767px){
-    .ui.container{
      width: 100%;
      margin-left: 0px;
      margin-right: 0px;
@@ -67,4 +79,8 @@
     display: flex;
     align-items: center;
     place-content: flex-end;
+}
+.ui.form .field div{
+    display: flex;
+    flex-direction: row;
 }
