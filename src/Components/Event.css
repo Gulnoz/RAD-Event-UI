@@ -1,0 +1,70 @@
+.ui.table{
+    border: 1px solid black;
+    border-bottom: none;
+    border-radius: 0;
+    width: 100%;
+    margin-left: 0px;
+}
+.ui.table thead tr:first-child>th:last-child {
+    border-radius: 0;
+}
+.ui.table thead tr:first-child>th:first-child {
+    border-radius: 0;
+}
+
+.ui.table thead th {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+.ui.table tr td {
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.ui.table tr td:first-child{
+    border-left: none;
+}
+
+@media only screen and (max-width: 2000px) and (min-width: 500px){
+.ui.container{
+     width: 100%;
+     margin-left: 0px;
+     margin-right: 0px;
+}
+}
+@media only screen and (max-width: 767px){
+    .ui.container{
+     width: 100%;
+     margin-left: 0px;
+     margin-right: 0px;
+}
+}
+.ui.button{
+    background-color: orange;
+    border-radius: 0;
+    color: black;
+    width: 140px;
+    border: 1px solid black;
+}
+
+.ui.compact.segment{
+    border: none;
+    width: 500px;
+    padding: 0px;
+    }
+
+.ui.segment{
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.ui.form input:not([type]){
+    width: 83%;
+    vertical-align: 0;
+    border-radius: 0;
+    border: 1px solid black;
+    margin-left: 20px;
+}
+.ui.form .field{
+    display: flex;
+    align-items: center;
+    place-content: flex-end;
+}
