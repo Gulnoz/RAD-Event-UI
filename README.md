@@ -1,7 +1,7 @@
 # EVENTS-UI
 
 ## Deployed project on AWS using AWS S3 bucket:
-http://rad-events.s3-website.us-east-2.amazonaws.com
+http://radevents.s3-website.us-east-2.amazonaws.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
