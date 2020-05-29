@@ -50,6 +50,7 @@ const App = props => {
     }
   }
   const cancelHendler = () =>{
+    debugger;
     console.log('cancel')
   setEvent(null);
   }

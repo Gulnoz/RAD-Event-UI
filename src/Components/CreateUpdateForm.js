@@ -41,8 +41,17 @@ const CreateUpdateForm = props =>{
         clearForm();
     }
 
-    const submitHandle = () => {
+    const submitHandle = (e) => {
+        debugger;
+        console.log(e);
+        e.preventDefault();
+        console.log('submit button')
         fetchCreateEvent(state);
+        clearForm();
+    }
+
+    const cancelHendle =()=>{
+        cancelHendler();
         clearForm();
     }
     
@@ -50,21 +59,24 @@ const CreateUpdateForm = props =>{
     return (
         <Segment compact>
             <h2>{event ? "Update" : "Add"} Event:</h2>
-            <Form onSubmit={submitHandle}>
+            <Form onSubmit = {submitHandle}>
                 <Form.Field>
-                Organizer: <input name="organizer"value={organizer} onChange={onChange} />
+                Organizer: <input required name = "organizer" value={organizer} onChange={onChange} />
                 </Form.Field>
                 <Form.Field>
-                    Venue: <input name="venue" value={venue} onChange={onChange} />
+                    Venue: <input required name = "venue" value={venue} onChange={onChange} />
                 </Form.Field>
                 <Form.Field>
-                    Date: <input name="date" value={date} onChange={onChange} />
+                    Date: <input required name = "date" value={date} onChange={onChange} />
                 </Form.Field>
                 <div>
-                    {event ?
-                        <><Button type='button' onClick={cancelHendler}>Cancel</Button>
-                    <Button type='button' onClick={clickHandle}>Update</Button></>
-                    : <Button type='submit'>Add</Button>}
+                    <>
+                    <Button style={event ? { display: "" } : { display: "none" }} 
+                            type='button' onClick={cancelHendle}>Cancel</Button>
+                    <Button style={event ? { display: "" } : { display: "none" }}
+                            type = 'button' onClick = {clickHandle}>Update</Button>
+                    <Button type = 'submit' style={event ? {display:"none"} : {display:""}}>Add</Button>
+                    </>
                 </div>
             </Form>
         </Segment>
