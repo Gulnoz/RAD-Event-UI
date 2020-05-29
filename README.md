@@ -1,5 +1,8 @@
 # EVENTS-UI
 
+## Deployed project on AWS using AWS S3 bucket:
+http://rad-events.s3-website.us-east-2.amazonaws.com
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Integrated APIs
@@ -27,8 +30,8 @@ To build application run:
 ### `npm run build`
 
 ## Functionality:
-
-- List existing events
+Full CRUD
+- Read existing events
 - Create new event
 - Update selected event
 - Delete selected event
