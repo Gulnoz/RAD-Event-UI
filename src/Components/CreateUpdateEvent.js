@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './CreateUpdateForm'
 const CreateUpdateEvent = props => {
-    const { handleUpdateEvent,handleCreateEvent, event, action } = props;
+    const { handleUpdateEvent, handleCreateEvent, event, action, cancelHendler } = props;
 
     const fetchCreateEvent = (event) => {
         fetch('https://qfdybmvc7d.execute-api.us-east-2.amazonaws.com/dev/events', {
@@ -36,6 +36,7 @@ const CreateUpdateEvent = props => {
             fetchUpdateEvent={fetchUpdateEvent} 
             fetchCreateEvent={fetchCreateEvent}
             event={event} action={action}
+            cancelHendler={cancelHendler}
         />
     );
 }

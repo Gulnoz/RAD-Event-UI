@@ -12,14 +12,14 @@ const App = props => {
     fetchEvents();
   }, []);
 
-  const fetchEvents=()=>{
+  const fetchEvents = () =>{
     fetch('https://qfdybmvc7d.execute-api.us-east-2.amazonaws.com/dev/events')
       .then(res => res.json())
       .then(events => {
         setEvents(events)
       });
   }
-  const fetchDeleteEvent=(id)=>{
+  const fetchDeleteEvent = (id) =>{
     fetch(`https://qfdybmvc7d.execute-api.us-east-2.amazonaws.com/dev/events/${id}`,{
       method: 'DELETE'
     })
@@ -29,32 +29,45 @@ const App = props => {
             deleteHandler(id)
         }});
   }
-  const deleteHandler = (id) => {
+  const deleteHandler = (id) =>{
     let newEvents = events.filter(event => event.event_id !== id);
     setEvents(newEvents);
   }
- 
   const handleCreateEvent=(event)=>{
     setEvents([...events, event]);
   }
-  const handleUpdateEvent = (event) => {
+  const handleUpdateEvent = (event) =>{
     console.log(event)
     let id = event.event_id
     let newEvents = events.filter(event => event.event_id !== id);
     setEvents([...newEvents, event]);
   }
-  const handleUpdateDelete=(event, action)=>{
+  const handleUpdateDelete = (event, action) =>{
     setEvent(event);
     setAction(action);
     if(action === "DELETE"){
       fetchDeleteEvent(event.event_id);
     }
   }
+  const cancelHendler = () =>{
+    console.log('cancel')
+  setEvent(null);
+  }
   return (
     <>
       <h2>Welcome to the Ride-and-Drive Event Database!</h2>
-      <EventList handleUpdateDelete={handleUpdateDelete} events={events} fetchEvents={fetchEvents}/>
-      <CreateUpdateEvent event={event} action={action} handleUpdateEvent={handleUpdateEvent} handleCreateEvent={handleCreateEvent}/>
+      <EventList
+          handleUpdateDelete={handleUpdateDelete}
+          events={events} 
+          fetchEvents={fetchEvents}
+      />
+      <CreateUpdateEvent 
+          event={event} 
+          action={action}
+          handleUpdateEvent={handleUpdateEvent}
+          handleCreateEvent={handleCreateEvent}
+          cancelHendler={cancelHendler}
+      />
     </>
   );
 }
